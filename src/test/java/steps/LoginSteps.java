@@ -21,8 +21,7 @@ public class LoginSteps extends CommonMethods {
 
     @Given("user is able to access HRMS application")
     public void user_is_is_able_to_access_HRMS_application() throws IOException {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
+        openBrowserAndLaunchApplication();
         driver.get("http://hrm.syntaxtechs.net/humanresources/symfony/web/index.php/auth/login");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 

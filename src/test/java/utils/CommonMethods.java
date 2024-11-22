@@ -1,5 +1,6 @@
 package utils;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -24,10 +25,13 @@ public class CommonMethods extends PageInitializer{
     //Opens the browser and launches the application based on the browser specified in config.properties
     public void openBrowserAndLaunchApplication() {
         switch (ConfigReader.read("browser")) {
-
             case "Chrome":
-                ChromeOptions options = new ChromeOptions();
-                options.addArguments("--headless");
+
+               ChromeOptions options = new ChromeOptions();
+               options.addArguments("--headless=new");
+               options.addArguments("--no-sandbox");
+               options.addArguments("--disable-dev-shm-usage");
+               options.addArguments("--remote-allow-origins=*");
                 driver = new ChromeDriver(options);
                 break;
 
@@ -55,6 +59,7 @@ public class CommonMethods extends PageInitializer{
     public void closeBrowser() {
         if (driver != null) {
             driver.quit();
+            driver=null;
         }
     }
 

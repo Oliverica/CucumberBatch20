@@ -26,11 +26,15 @@ public class Hooks extends CommonMethods {
         } else {
             pic = takeScreenshot("passed/" + scenario.getName());
         }
-        scenario.attach(pic,"image/png", scenario.getName());
+        scenario.attach(pic, "image/png", scenario.getName());
 
-
-        //driver.quit();
-        closeBrowser();
+        try {
+            System.out.println("Closing the browser..");
+            closeBrowser();
+            System.out.println("Browser closed successfully.");
+        } catch (Exception e) {
+            System.err.println("Error while closing the browser: " + e.getMessage());
+        }
 
 
     }
